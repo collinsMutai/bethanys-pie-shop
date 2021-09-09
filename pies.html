@@ -58,4 +58,36 @@
       </nav>
     </footer>
   </body>
+  <script>
+    window.addEventListener("DOMContentLoaded", function(e){
+      const orderButtons = document.querySelectorAll("button[data-order]");
+// loop buttons
+      orderButtons.forEach(function(button){
+        // add click event to specific button
+        button.addEventListener("click", function(e){
+          const button = e.currentTarget;
+// access parent div container
+          const container = button.parentNode;
+
+          const order = {
+            id: button.getAttribute("data-order"),
+            title: container.querySelector(".title").innerText,
+            price: container.querySelector(".price").innerText,
+            desc: container.querySelector(".desc").innerText
+
+          };
+// save order object to localstorage
+           localStorage.setItem("order", JSON.stringify(order));
+// redirect page to order's page
+          const url = window.location.href.replace("pies.html", "order.html")
+
+          window.location.href = url;
+
+         
+
+        })
+      })
+
+    })
+     </script>
 </html>
